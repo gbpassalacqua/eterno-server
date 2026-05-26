@@ -1007,8 +1007,12 @@ app.get('/api/clients/:id/extractions', async (req, res) => {
 // INICIAR SERVIDOR
 // =============================================================================
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🌟 ETERNO Server rodando na porta ${PORT}`);
-  console.log(`Webhook URL: http://localhost:${PORT}/api/vapi-webhook`);
-});
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`🌟 ETERNO Server rodando na porta ${PORT}`);
+    console.log(`Webhook URL: http://localhost:${PORT}/api/vapi-webhook`);
+  });
+}
+
+module.exports = app;
